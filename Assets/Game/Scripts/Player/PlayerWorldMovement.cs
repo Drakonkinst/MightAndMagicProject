@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerWorld : MonoBehaviour
+public class PlayerWorldMovement : MonoBehaviour
 {
     public float moveSpeed = 5F;
     public float rotationSpeed = 1000F;

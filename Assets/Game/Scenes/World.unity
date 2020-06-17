@@ -284,8 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 731369382}
-  walkDistance: 8
-  runDistance: 8
+  playerDistance: 7
   height: 8
 --- !u!20 &230348571
 Camera:
@@ -554,7 +553,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeed: 1000
-  anchor: {fileID: 230348572}
 --- !u!54 &452216575
 Rigidbody:
   m_ObjectHideFlags: 0
