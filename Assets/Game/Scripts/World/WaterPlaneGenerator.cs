@@ -14,12 +14,8 @@ public class WaterPlaneGenerator : MonoBehaviour {
         filter.mesh = GenerateMesh();
     }
 
-    void Update() {
-
-    }
-
     private Mesh GenerateMesh() {
-        Mesh m = new Mesh();
+        Mesh mesh = new Mesh();
         List<Vector3> vertices = new List<Vector3>();
         List<Vector3> normals = new List<Vector3>();
         List<Vector2> uvs = new List<Vector2>();    // only stores x, z
@@ -45,11 +41,11 @@ public class WaterPlaneGenerator : MonoBehaviour {
             });
         }
 
-        m.SetVertices(vertices);
-        m.SetNormals(normals);
-        m.SetUVs(0, uvs);
-        m.SetTriangles(triangles, 0);
+        mesh.SetVertices(vertices);
+        mesh.SetNormals(normals);
+        mesh.SetUVs(0, uvs);
+        mesh.SetTriangles(triangles, 0);
 
-        return m;
+        return mesh;
     }
 }
