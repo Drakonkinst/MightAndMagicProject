@@ -5,14 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerWorld : MonoBehaviour
 {
-    public float moveSpeed = 5F; // units/sec
+    public float moveSpeed = 5F;
     public float rotationSpeed = 1000F;
-    public Transform anchor;
     
     private PlayerControls controls;
     private Vector2 movementInput;
     private Vector3 moveDirection;
     private Transform myTransform;
+    private Rigidbody rigidBody;
     
 
     void Awake() {
@@ -24,6 +24,7 @@ public class PlayerWorld : MonoBehaviour
 
     void Start() {
         myTransform = transform;
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     void Update() {
@@ -39,8 +40,9 @@ public class PlayerWorld : MonoBehaviour
     private void MoveCharacter() {
         // set rigidbody speed instead of changing position
         // could remove .normalized for finer joystick input
-        GetComponent<Rigidbody>().velocity = moveDirection.normalized * moveSpeed;
+        rigidBody.velocity = moveDirection.normalized * moveSpeed;
 
+        // turns player in direction of movement, with a small delay that does not affect movement
         if(moveDirection != Vector3.zero) {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(moveDirection), rotationSpeed * Time.deltaTime);
         }
@@ -52,7 +54,7 @@ public class PlayerWorld : MonoBehaviour
             Debug.Log("Ouch");
             
         }
-
+        
         if(other.tag == "Artifact") {
             Debug.Log("Yay!");
             Destroy(other.gameObject);
