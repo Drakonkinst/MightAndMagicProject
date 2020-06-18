@@ -13,7 +13,6 @@ public class PlayerWorldMovement : MonoBehaviour
     private Vector3 moveDirection;
     private Transform myTransform;
     private Rigidbody rigidBody;
-    
 
     void Awake() {
         controls = new PlayerControls();
