@@ -6,7 +6,6 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
     
-    public List<AudioClip> audioClips;
     private const float DefaultVolume = 1.0f;
     private const float DefaultPitch = 1.0f;
     
