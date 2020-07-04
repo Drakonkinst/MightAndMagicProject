@@ -27,6 +27,7 @@ public class BackgroundMusic : MonoBehaviour
         Debug.Log("Playing " + clip.name);
         // Creates new object. Probably inefficient but I'm too tired to think of a natural system for now.
         // Maybe just use the native system for the background music? Keep an AudioSource object
+        // Should still be a child component since good practice, in the case of ambient sounds or whatever
         currentMusic = SoundManager.Instance.Play(clip, myTransform, volume);
         Invoke("PlayNextSong", currentMusic.clip.length);
     }

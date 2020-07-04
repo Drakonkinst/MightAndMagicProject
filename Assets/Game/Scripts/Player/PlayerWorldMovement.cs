@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerWorldMovement : MonoBehaviour
 {
-    public float moveSpeed = 5F;
-    public float rotationSpeed = 1000F;
+    public float moveSpeed = 6f;
+    public float rotationSpeed = 1000f;
     
     private PlayerControls controls;
     private Vector2 movementInput;
@@ -52,12 +52,17 @@ public class PlayerWorldMovement : MonoBehaviour
         if(other.tag == "Wall") {
             Debug.Log("Ouch");
             
-        }
-        
-        if(other.tag == "Artifact") {
+        } else if(other.tag == "Artifact") {
             Debug.Log("Yay!");
             Destroy(other.gameObject);
-        } 
+        } else if(other.tag == "Enemy") {
+            Debug.Log("Time to fight!");
+        } else if(other.tag == "Structure") {
+            Debug.Log("Time to go inside!");
+            // TODO: Stop world, do zooming animation for ~3s, change scene
+            // TODO: Make sure they respawn facing away + a small distance away from the structure
+            // TODO: All structures are about the same size
+        }
         
     }
 
