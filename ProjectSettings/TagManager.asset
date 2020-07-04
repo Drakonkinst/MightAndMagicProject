@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Wall
   - Artifact
+  - Enemy
+  - Collide
+  - Structure
   layers:
   - Default
   - TransparentFX
