@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHorse : MonoBehaviour
+public class PlayerAnimations : MonoBehaviour
 {
     public string idleParameterName = "IdleAnimation";
     public string runningParameterName = "IsRunning";
+    public string busyParameterName = "IsBusy";
+    public string fightAnimationName = "horse_rear_up";
     public AudioClip footstepLoop;
     public int numIdleAnimations = 4;
     public int chanceForSpecial = 2;
@@ -16,19 +18,18 @@ public class PlayerHorse : MonoBehaviour
     
     private int idleParameter;
     private int runningParameter;
+    private int busyParameter;
     private Animator animator;
-    private Rigidbody rigidBody;
-    private Transform myTransform;
     private AudioSource soundEmitter;
-    //private Vector3 lastPos; 
+    private Transform myTransform;
     
-    // Start is called before the first frame update
-    void Start()
-    {
+    private bool isRunning = false;
+    //private bool isBusy;
+    
+    void Start() {
         animator = GetComponent<Animator>();
-        rigidBody = GetComponent<Rigidbody>();
-        
         myTransform = transform;
+        
         GameObject obj = new GameObject("Horse Footsteps");
         obj.transform.position = myTransform.position;
         obj.transform.parent = myTransform;
@@ -40,29 +41,31 @@ public class PlayerHorse : MonoBehaviour
         
         idleParameter = Animator.StringToHash(idleParameterName);
         runningParameter = Animator.StringToHash(runningParameterName);
+        busyParameter = Animator.StringToHash(busyParameterName);
+        
         // Lazy solution to random horse idle animations - just changing it every 3 seconds
         // Better way would be to add Animation Events but I don't feel like dealing with that
         InvokeRepeating("PickNewIdleAnimation", 0, idleChangeDelay);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Vector3 difference = myTransform.position - lastPos;
-        //bool isRunning = (difference.magnitude / Time.deltaTime) > movingThreshold;
-        bool isRunning = rigidBody.velocity.magnitude > movingThreshold;
-        animator.SetBool(runningParameter, isRunning);
-        //Debug.Log("IS RUNNING: " + isRunning);
+    
+    void Update() {
         if(isRunning && !soundEmitter.isPlaying) {
             soundEmitter.Play();
         } else if(!isRunning && soundEmitter.isPlaying) {
             soundEmitter.Pause();
         }
-        //lastPos = myTransform.position;
+    }
+    
+    public void SetRunning(bool flag) {
+        isRunning = flag;
+        animator.SetBool(runningParameter, flag);
+    }
+    
+    public void PlayFightAnimation() {
+        animator.Play("Base Layer." + fightAnimationName);
     }
     
     private void PickNewIdleAnimation() {
-        //Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         int animationIndex = 0;
         if(Random.Range(0, chanceForSpecial) == 0) {
             animationIndex = Random.Range(0, numIdleAnimations) + 1;
