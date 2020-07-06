@@ -1689,11 +1689,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1689659192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277186c1137aa634b9b84fa822c8bb49, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b70c236e187bd24f8945722dc8f58c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   idleParameterName: IdleAnimation
   runningParameterName: IsRunning
+  busyParameterName: IsBusy
+  fightAnimationName: horse_rear_up
   footstepLoop: {fileID: 8300000, guid: a42ded48963b04e4290317fd2c4697c4, type: 3}
   numIdleAnimations: 4
   chanceForSpecial: 2
@@ -1701,6 +1703,24 @@ MonoBehaviour:
   movingThreshold: 0.5
   footstepVolume: 1
   footstepPitch: 0.9
+--- !u!114 &1689659194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689659192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e103c9581b660488055675cda9e8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animations: {fileID: 1689659193}
+  camera: {fileID: 230348570}
+  moveSpeed: 6
+  rotationSpeed: 1000
+  instanceSwitchDelay: 3
+  movingThreshold: 0.5
 --- !u!1001 &1689756132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1711,6 +1731,10 @@ PrefabInstance:
     - target: {fileID: 100060, guid: fb180441b57a085448474bef00131625, type: 3}
       propertyPath: m_Name
       value: Player_Horse
+      objectReference: {fileID: 0}
+    - target: {fileID: 100060, guid: fb180441b57a085448474bef00131625, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 400060, guid: fb180441b57a085448474bef00131625, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1762,6 +1786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1883253447, guid: fb180441b57a085448474bef00131625, type: 3}
+    - {fileID: 1883253448, guid: fb180441b57a085448474bef00131625, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fb180441b57a085448474bef00131625, type: 3}
 --- !u!1 &1759785554
 GameObject:
