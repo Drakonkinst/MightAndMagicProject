@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyWander : MonoBehaviour
 {
     private static readonly float MaxAngle = 2.0f * Mathf.PI;
+    
     public float maxWanderDistance = 1.0f;
     public float minChangeDistance = 0.1f;
     public float maxChaseDistance = 3.0f;
